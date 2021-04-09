@@ -68,21 +68,8 @@ var cmdPropToORB = {
         { "mode": 0, "pos": 0 }]
     }
 };
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
-=======
-/*
-//Es war über alle Sensor
->>>>>>> 9325f11ff... add color sensor
-=======
-
-<<<<<<< HEAD
->>>>>>> c938939f4... Bug fixing (rebase), adjustment of OrbBehaviours
-=======
-
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
 function configSensor(id, type, mode, option) {
     id = id - 1;
     if (0 <= id && id < 4) {
@@ -94,7 +81,7 @@ function configSensor(id, type, mode, option) {
     else
         console.log("configSensor", "Err:wrong id");
 }
-
+/*
 function dataValid(valid, typeSensor, typeFromOrb){
     if (valid == true){
         if (typeSensor == typeFromOrb){
@@ -104,55 +91,31 @@ function dataValid(valid, typeSensor, typeFromOrb){
     else{
         return false;
     }
-}
+}*/
 
-/*
+
 function getSensorValue(id) {
     id = id - 1;
     if (0 <= id && id < 4) {
         return (propFromORB.Sensor[id].value[0]);
     }
     return (0);
+}
+
+
+/*
+function getSensorValue(id, type) {
+    id = id - 1;
+    if (0 <= id && id < 4) {
+        if (dataValid(propFromORB.Sensor[id].valid, type, propFromORB.Sensor[id].type) == true){
+            return (propFromORB.Sensor[id].value[0]);
+        }
+        else{
+            return ("no valid");
+        }
+    }
 }*/
 
-<<<<<<< HEAD
-
-
-function getSensorValue(id, type) {
-    id = id - 1;
-    if (0 <= id && id < 4) {
-        if (dataValid(propFromORB.Sensor[id].valid, type, propFromORB.Sensor[id].type) == true){
-            return (propFromORB.Sensor[id].value[0]);
-        }
-        else{
-            return ("no valid");
-        }
-    }
-}
-=======
->>>>>>> a743a2552... Add a function for validation
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-function getSensorValueColor(id) {
-=======
-=======
-=======
-
-function getSensorValue(id, type) {
-    id = id - 1;
-    if (0 <= id && id < 4) {
-        if (dataValid(propFromORB.Sensor[id].valid, type, propFromORB.Sensor[id].type) == true){
-            return (propFromORB.Sensor[id].value[0]);
-        }
-        else{
-            return ("no valid");
-        }
-    }
-}
-
->>>>>>> 201bffcb4... Adjustment for firmware 0.70
 function getSensorValueColor(id) {
     id = id - 1;
     if (0 <= id && id < 4) {
@@ -193,7 +156,6 @@ function getSensorValueUltrasonic(id) {
     return (0);
 }
 
->>>>>>> 2e65f40f1... add new sensors, color change
 function getSensorValueGyro(id) {
     id = id - 1;
     if (0 <= id && id < 4) {
@@ -208,82 +170,6 @@ function getSensorValueGyro(id) {
     return (0);
 }
 
-<<<<<<< HEAD
-function getSensorAnalog(id, ch) {
->>>>>>> c938939f4... Bug fixing (rebase), adjustment of OrbBehaviours
-    id = id - 1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    if (0 <= id && id < 4) {
-        if(propFromORB.Sensor[id].value[0] == 0){
-            return("No Color");
-        }
-        if(propFromORB.Sensor[id].value[0] == 1){
-            return("Black");
-        }
-        if(propFromORB.Sensor[id].value[0] == 2){
-            return("Blue");
-        }
-        if(propFromORB.Sensor[id].value[0] == 3){
-            return("Green");
-        }
-        if(propFromORB.Sensor[id].value[0] == 4){
-            return("Yellow");
-        }
-        if(propFromORB.Sensor[id].value[0] == 5){
-            return("Red");
-        }
-        if(propFromORB.Sensor[id].value[0] == 6){
-            return("White");
-        }
-        if(propFromORB.Sensor[id].value[0] == 7){
-            return("Brown");
-        }
-=======
-    if (0 <= id && id < 4 && 0 <= ch && ch < 2) {//erste ch = cg
-=======
-    if (0 <= id && id < 4 && 0 <= ch && ch < 2) {
->>>>>>> 2e65f40f1... add new sensors, color change
-        return (propFromORB.Sensor[id].analog[ch]);
->>>>>>> 9325f11ff... add color sensor
-    }
-    return (0);
-}
-
-function getSensorValueUltrasonic(id) {
-    id = id - 1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    if (0 <= id && id < 4) {
-        var a = propFromORB.Sensor[id].value[0];
-        return (a/10);
-=======
-    if (0 <= id && id < 4 && 0 <= ch && ch < 2) {//erste ch = cg
-=======
-    if (0 <= id && id < 4 && 0 <= ch && ch < 2) {
->>>>>>> 2e65f40f1... add new sensors, color change
-        return (propFromORB.Sensor[id].digital[ch]);
->>>>>>> 9325f11ff... add color sensor
-    }
-    return (0);
-}
-
-function getSensorValueGyro(id) {
-    id = id - 1;
-    if (0 <= id && id < 4) {
-        if (propFromORB.Sensor[id].value[0] <= 32767){
-            return (propFromORB.Sensor[id].value);
-        }
-        else{
-            propFromORB.Sensor[id].value[0] = propFromORB.Sensor[id].value[0]-65536;
-            return (propFromORB.Sensor[id].value);
-        }
-    }
-    return (0);
-}
-
-=======
->>>>>>> 201bffcb4... Adjustment for firmware 0.70
 
 function setMotor(id, mode, speed, pos) {
     id = id - 1;
@@ -346,26 +232,9 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
         }
 
         RobotOrbBehaviour.prototype.setSpeedProcent = function (speedL, speedR){
-<<<<<<< HEAD
-<<<<<<< HEAD
             // Zuordnung Seite und Einbaurichtung fehlen
             var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
             var maxspeed = 2.7*(driveConfig.wheelDiameter * Math.PI);
-=======
-            /*Diese Funktion berechnet Speed in Prozenten und nicht
-            in Umderehungen, ist abert ist zu erst nur in DriveBlock 
-            verwendet, es muss noch etwas präzisiert werden, damit die
-            in weiteren Blocken angwendet werden kann
-            */
-            // Zuordnung Seite und Einbaurichtung fehlen
-            var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
-            var maxspeed = 2.6*(driveConfig.wheelDiameter * Math.PI);
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
-=======
-            // Zuordnung Seite und Einbaurichtung fehlen
-            var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
-            var maxspeed = 2.7*(driveConfig.wheelDiameter * Math.PI);
->>>>>>> 2e65f40f1... add new sensors, color change
             speedL = ((speedL/100)*maxspeed)*distanceToTics;
             speedR = ((speedR/100)*maxspeed)*distanceToTics;
             setMotor(driveConfig.motorL.port, 2, driveConfig.motorL.orientation * speedL, 0);
@@ -381,24 +250,11 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
                 t += 1000.0 * Math.abs(distance / speed);
             return (t);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         RobotOrbBehaviour.prototype.setMoveToProcent = function ( speedL, speedR, deltaL, deltaR ){
             // Zuordnung Seite und Einbaurichtung fehlen
             var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
             var maxspeed = 2.7*(driveConfig.wheelDiameter * Math.PI);
-=======
-
-        RobotOrbBehaviour.prototype.setMoveToProcent = function ( speedL, speedR, deltaL, deltaR ){
-            // Zuordnung Seite und Einbaurichtung fehlen
-            var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
-<<<<<<< HEAD
-            var maxspeed = 2.6*(driveConfig.wheelDiameter * Math.PI);
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
-=======
-            var maxspeed = 2.7*(driveConfig.wheelDiameter * Math.PI);
->>>>>>> 2e65f40f1... add new sensors, color change
             
             deltaL *= distanceToTics;
             deltaR *= distanceToTics;
@@ -420,8 +276,6 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
 
         RobotOrbBehaviour.prototype.setSpeedMotorOnProcent = function (port, speed, duration){
             var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
-<<<<<<< HEAD
-<<<<<<< HEAD
             var maxspeed = 2.7*(driveConfig.wheelDiameter * Math.PI);
             speed = ((speed/100)*maxspeed)*distanceToTics;
             setMotor(port, 2, driveConfig.motorL.orientation * speed, duration);
@@ -444,36 +298,6 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
           }
   
 
-=======
-        
->>>>>>> c938939f4... Bug fixing (rebase), adjustment of OrbBehaviours
-=======
-            var maxspeed = 2.6*(driveConfig.wheelDiameter * Math.PI);
-=======
-            var maxspeed = 2.7*(driveConfig.wheelDiameter * Math.PI);
->>>>>>> 2e65f40f1... add new sensors, color change
-            speed = ((speed/100)*maxspeed)*distanceToTics;
-            setMotor(port, 2, driveConfig.motorL.orientation * speed, duration);
-            this.btInterfaceFct(cmdPropToORB);
-        }
-
-        RobotOrbBehaviour.prototype.setMoveToMotorOnProcent = function (port, speed, delta ){
-            var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
-            var maxspeed = 2.7*(driveConfig.wheelDiameter * Math.PI);
-            
-            delta *= distanceToTics;
-            speed = Math.abs(((speed/100)*maxspeed)*distanceToTics);
-            
-            var target =  getMotorPos(port) + driveConfig.motorL.orientation*delta; 
-            var timeToGo = this.calcTimeToGo(speed,delta);
-            
-            setMotor(port, 3, speed, target );
-            this.btInterfaceFct(cmdPropToORB);
-            return timeToGo;
-          }
-  
-
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
         RobotOrbBehaviour.prototype.setMoveTo = function ( speedL, speedR, deltaL, deltaR ){
           // Zuordnung Seite und Einbaurichtung fehlen
           var distanceToTics = 1000.0/(driveConfig.wheelDiameter * Math.PI);
@@ -595,29 +419,20 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
             U.debug('clear display');
             this.toDisplayFct({ "clear": true });
         };
-
- /*       
+     
         RobotOrbBehaviour.prototype.getSample = function (s, name, sensor, port, slot) {
             configSensor(port, 1, 0, 0);
             if (sensor == "ultrasonic"){
                 cmdConfigToORB.configToORB.Sensor[port - 1].type = 1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                 if (slot == "distance"){
                     configSensor(port, 1, 0, 0);
                     this.btInterfaceFct(cmdConfigToORB);
-<<<<<<< HEAD
                     //s.push(getSensorValue(port));
                     s.push(getSensorValueUltrasonic(port));
                 }
                 else if (slot == "presence"){
                     configSensor(port, 1, 2, 0);
                     this.btInterfaceFct(cmdConfigToORB);
-=======
-                    this.btInterfaceFct(cmdPropToORB);
-                    //getSensorValue(id)
->>>>>>> b8d4d5ef3... fix rebase error
                     s.push(getSensorValue(port));
                 }
             }
@@ -670,104 +485,10 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
                     this.btInterfaceFct(cmdConfigToORB);
                     s.push(getSensorValue(port));
                 }
-=======
-                if (slot == "distance"){//dis in mm, check andere mods
-                    cmdConfigToORB.configToORB.Sensor[port - 1].mode = 0;
-                    this.btInterfaceFct(cmdConfigToORB);
-                    this.btInterfaceFct(cmdPropToORB);//ist zuschnell,wir mussen das früher machen oder ein weit bauen
-=======
-                if (slot == "distance"){//dis in mm,
-                    configSensor(port, 1, 0, 0);
-                    this.btInterfaceFct(cmdConfigToORB);//ist zu schnell, schon besser
->>>>>>> c938939f4... Bug fixing (rebase), adjustment of OrbBehaviours
-=======
-                if (slot == "distance"){
-                    configSensor(port, 1, 0, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-<<<<<<< HEAD
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
-                    s.push(getSensorValue(port));
-=======
-                    //s.push(getSensorValue(port));
-                    s.push(getSensorValueUltrasonic(port));
->>>>>>> 2e65f40f1... add new sensors, color change
-                }
-                else if (slot == "presence"){
-                    configSensor(port, 1, 2, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValue(port));
-                }
             }
-            else if (sensor == "color"){
-                if (slot == "colour"){
-                    configSensor(port, 1, 2, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValueColor(port));
-                }
-                if (slot == "light"){
-                    configSensor(port, 1, 0, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValue(port));
-                }
-                if (slot == "ambientlight"){
-                    configSensor(port, 1, 1, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValue(port));
-                }
-                if (slot == "rgb"){
-                    configSensor(port, 1, 4, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValueColor(port));
-                }
-            }
-            else if (sensor == "touch"){
-                configSensor(port, 4, 0, 0);
-                s.push(getSensorValue(port));
-            }
-            else if (sensor == "gyro"){
-                if (slot == "angle"){
-                    configSensor(port, 1, 0, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValue(port));
-                }
-                if (slot == "rate"){
-                    configSensor(port, 1, 1, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValueGyro(port));
-                }
-            }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            else {
-                throw new Error("Sensor not implemented.");
->>>>>>> 9325f11ff... add color sensor
-            }
-=======
->>>>>>> c938939f4... Bug fixing (rebase), adjustment of OrbBehaviours
-=======
-            else if (sensor == "infrared"){//Block muss geandert werden, kein Mod wird geschickt
-                configSensor(port, 1, 0, 0);//Kommt immer Wert 0 zurück, Firmware ?
-                this.btInterfaceFct(cmdConfigToORB);
-                s.push(getSensorValue(port));
-=======
-            else if (sensor == "infrared"){
-                if (slot == "distance"){
-                    configSensor(port, 1, 0, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValue(port));
-                }
-                if (slot == "presence"){
-                    configSensor(port, 1, 2, 0);
-                    this.btInterfaceFct(cmdConfigToORB);
-                    s.push(getSensorValue(port));
-                }
->>>>>>> 4972ec361... add infrared-sensor
-            }
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
             return;
         };
-*/
+/*
         RobotOrbBehaviour.prototype.getSample = function (s, name, sensor, port, slot){
             configSensor(port, 1, 0, 0);
             this.btInterfaceFct(cmdConfigToORB);
@@ -778,7 +499,7 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
             else {
                 s.push(a);
             }
-        }
+        }*/
 
         function validValue(s,port){
             s.push(getSensorValue(port,1));
@@ -915,8 +636,6 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
             var gradToTics = 1000.0 / 360.0;
             var timeToGo = 0;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             if (isMotorConfug == false){
                 this.btInterfaceFct(cmdConfigToORB);
                 isMotorConfug = true;
@@ -924,55 +643,16 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
             if (duration === undefined) {
                 //setMotor( port, 2, gradToTics*speed, 0 );
                 this.setSpeedMotorOnProcent(port, speed, 0);
-=======
-            if (duration === undefined) { // SPEED mode
-                setMotor( port, 2, gradToTics*speed, 0 );
-=======
-            if (isMotorConfug == false){
-                this.btInterfaceFct(cmdConfigToORB);
-                isMotorConfug = true;
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
             }
-            if (duration === undefined) {
-                //setMotor( port, 2, gradToTics*speed, 0 );
-                this.setSpeedMotorOnProcent(port, speed, 0);
-            }
-<<<<<<< HEAD
-            else {/* Es Funktioniert nicht richtig jetzt :( */
-                setMotor( port, 3, gradToTics*speed, getMotorPos(port) + gradToTics*duration );
-                //this.setMoveToMotorOnProcent(port, speed, duration);
-                timeToGo = this.calcTimeToGo(speed, duration);
->>>>>>> c938939f4... Bug fixing (rebase), adjustment of OrbBehaviours
-=======
             else {/* Es Funktioniert nicht richtig jetzt :(  */
 
                return(this.setMoveToMotorOnProcent( port,speed, duration));
                //setMotor( port, 3,speed, getMotorPos(port) + gradToTics*duration );
-<<<<<<< HEAD
-               setMotor( port, 3,speed, getMotorPos(port) + gradToTics*duration );
-               timeToGo = this.calcTimeToGo(speed, duration);
->>>>>>> 4972ec361... add infrared-sensor
-            }
-<<<<<<< HEAD
-            else {/* Es Funktioniert nicht richtig jetzt :(  */
-
-               return(this.setMoveToMotorOnProcent( port,speed, duration));
-               //setMotor( port, 3,speed, getMotorPos(port) + gradToTics*duration );
-=======
->>>>>>> 2e65f40f1... add new sensors, color change
                //timeToGo = this.calcTimeToGo(speed, duration);
             }
             //this.btInterfaceFct(cmdConfigToORB);
             //this.btInterfaceFct(cmdPropToORB);
             return 0;
-<<<<<<< HEAD
-=======
-            //this.btInterfaceFct(cmdConfigToORB);
-            this.btInterfaceFct(cmdPropToORB);
-            return timeToGo;
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
-=======
->>>>>>> 2e65f40f1... add new sensors, color change
         };
 
         RobotOrbBehaviour.prototype.motorStopAction = function (name, port) {
@@ -1026,17 +706,8 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
                 if (speed > 0) {
                     var distL = speedL * distance / speed;
                     var distR = speedR * distance / speed;
-<<<<<<< HEAD
-<<<<<<< HEAD
                     //return( this.setMoveTo(speedL,speedR, distL, distR ));
                     return( this.setMoveToProcent(speedL,speedR, distL, distR ));
-=======
-                    return( this.setMoveTo(speedL,speedR, distL, distR ));
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
-=======
-                    //return( this.setMoveTo(speedL,speedR, distL, distR ));
-                    return( this.setMoveToProcent(speedL,speedR, distL, distR ));
->>>>>>> 2e65f40f1... add new sensors, color change
                 }
             }
             this.setSpeed(0, 0);
@@ -1064,17 +735,8 @@ define(["require", "exports", "interpreter.aRobotBehaviour", "interpreter.consta
                 }
 
                 var distance = angle * Math.PI / 360 * driveConfig.trackWidth;
-<<<<<<< HEAD
-<<<<<<< HEAD
                 //return( this.setMoveTo(speed, speed, distance, -distance ));
                 return( this.setMoveToProcent(speed, speed, distance, -distance ));
-=======
-                return( this.setMoveTo(speed, speed, distance, -distance ));
->>>>>>> 1f8be4db0... Speed in percent, Add from infrared sensor, Reduction from sent config messages
-=======
-                //return( this.setMoveTo(speed, speed, distance, -distance ));
-                return( this.setMoveToProcent(speed, speed, distance, -distance ));
->>>>>>> 2e65f40f1... add new sensors, color change
             }
             return 0;
         };

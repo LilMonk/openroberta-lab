@@ -210,10 +210,6 @@ public class OrbStackMachineVisitor<V> extends AbstractStackMachineVisitor<V> im
     @Override
     public V visitGyroSensor(GyroSensor<V> gyroSensor) {
         ConfigurationComponent confGyroSensor = getConfigurationComponent(gyroSensor.getPort());
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 9325f11ff... add color sensor
         String mode = gyroSensor.getMode();
         String port = confGyroSensor.getProperty("CONNECTOR");
         String slot = gyroSensor.getSlot().toString(); // the mode is in the slot?
@@ -225,11 +221,6 @@ public class OrbStackMachineVisitor<V> extends AbstractStackMachineVisitor<V> im
     @Override
     public V visitGyroSensor(GyroSensor<V> gyroSensor) {
         ConfigurationComponent confGyroSensor = getConfigurationComponent(gyroSensor.getPort());
-<<<<<<< HEAD
-=======
->>>>>>> f00daab74...  issue WIP - integrate ORB
-=======
->>>>>>> 9325f11ff... add color sensor
         String brickName = confGyroSensor.getProperty("VAR");
         String port = confGyroSensor.getProperty("CONNECTOR");
         String slot = gyroSensor.getSlot().toString(); // the mode is in the slot?
@@ -239,15 +230,8 @@ public class OrbStackMachineVisitor<V> extends AbstractStackMachineVisitor<V> im
         } else {
             throw new DbcException("operation not supported");
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
     }*/
-=======
-    }
->>>>>>> f00daab74...  issue WIP - integrate ORB
-=======
-    }*/
->>>>>>> 9325f11ff... add color sensor
+
 
     @Override
     public V visitTimerSensor(TimerSensor<V> timerSensor) {
@@ -268,38 +252,11 @@ public class OrbStackMachineVisitor<V> extends AbstractStackMachineVisitor<V> im
 
     @Override
     public V visitInfraredSensor(InfraredSensor<V> infraredSensor) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4972ec361... add infrared-sensor
         ConfigurationComponent confSensor = getConfigurationComponent(infraredSensor.getPort());
         String mode = infraredSensor.getMode();
         String port = confSensor.getProperty("CONNECTOR");
         JSONObject o = mk(C.GET_SAMPLE).put(C.GET_SAMPLE, C.INFRARED).put(C.PORT, port).put(C.MODE, mode.toLowerCase()).put(C.NAME, "orb");//war ev3, hab geändert
         return app(o);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
-        /*
->>>>>>> 4972ec361... add infrared-sensor
-        ConfigurationComponent confInfraredSensor = getConfigurationComponent(infraredSensor.getPort());
-        String brickName = confInfraredSensor.getProperty("VAR");
-        String port = confInfraredSensor.getProperty("CONNECTOR");
-        if ( brickName != null && port != null ) {
-            JSONObject o = mk(C.GET_SAMPLE).put(C.GET_SAMPLE, C.INFRARED).put(C.NAME, brickName).put(C.PORT, port);
-            return app(o);
-        } else {
-            throw new DbcException("No robot name or no port!");
-        }
-<<<<<<< HEAD
->>>>>>> f00daab74...  issue WIP - integrate ORB
-=======
-        */
->>>>>>> 4972ec361... add infrared-sensor
-=======
->>>>>>> 2e65f40f1... add new sensors, color change
     }
 
     @Override
